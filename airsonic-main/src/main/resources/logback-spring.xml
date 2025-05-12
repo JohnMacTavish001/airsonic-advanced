@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <!-- Include Spring Boot's default Logback configuration support -->
+    <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
+
+    <!-- Include Spring Boot's standard file appender configuration -->
+    <!-- This will use properties like logging.file.name, logging.file.path, and logging.pattern.file from application.properties -->
+    <include resource="org/springframework/boot/logging/logback/file-appender.xml" />
+
+    <!-- Configure the root logger -->
+    <!-- The level is sourced from 'logging.level.root' in application.properties, defaulting to WARN if not set -->
+    <root level="${logging.level.root:-WARN}">
+        <appender-ref ref="FILE" /> <!-- Reference the FILE appender defined in file-appender.xml -->
+    </root>
+
+    <!-- Configure specific loggers -->
+    <!-- Levels are sourced from application.properties (e.g., logging.level.org.airsonic), defaulting if not set -->
+    <logger name="org.airsonic" level="${logging.level.org.airsonic:-INFO}"/>
+    <logger name="liquibase" level="${logging.level.liquibase:-INFO}"/>
+
+    <!-- Add other specific logger configurations here if needed, e.g.: -->
+    <!-- <logger name="org.springframework.web" level="WARN"/> -->
+    <!-- <logger name="org.hibernate" level="WARN"/> -->
+
+</configuration>
