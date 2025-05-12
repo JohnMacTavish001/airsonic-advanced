@@ -593,13 +593,14 @@
                     </compileSourceRoots>
                 </configuration>
             </plugin>
-            <plugin>
+            <!-- <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
                 <configuration>
                     <outputDirectory>${war.output.directory}</outputDirectory>
+                    <includeProvidedScope>true</includeProvidedScope>
                 </configuration>
-            </plugin>
+            </plugin> -->
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
