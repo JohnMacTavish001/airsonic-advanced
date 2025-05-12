@@ -7,25 +7,27 @@
     <tr>
         <c:if test="${not empty model.musicFolder}">
             <td style="padding-right: 2em">
-                <div style="border:1px solid #<spring:theme code='detailColor'/>; padding-left: 0.5em;padding-right: 0.5em">
+                <spring:theme code='detailColor' var="resolvedThemeColor"/>
+                <c:set var="finalHexColor" value="#${resolvedThemeColor}"/>
+                <div style="border:1px solid '${finalHexColor}'; padding-left: 0.5em;padding-right: 0.5em">
                         ${fn:escapeXml(model.musicFolder.name)}
                 </div>
             </td>
         </c:if>
 
         <c:if test="${model.listType ne 'random'}">
-            <sub:url value="home.view" var="previousUrl">
-                <sub:param name="listType" value="${model.listType}"/>
-                <sub:param name="listOffset" value="${model.listOffset - model.listSize}"/>
-                <sub:param name="genre" value="${model.genre}"/>
-                <sub:param name="decade" value="${model.decade}"/>
-            </sub:url>
-            <sub:url value="home.view" var="nextUrl">
-                <sub:param name="listType" value="${model.listType}"/>
-                <sub:param name="listOffset" value="${model.listOffset + model.listSize}"/>
-                <sub:param name="genre" value="${model.genre}"/>
-                <sub:param name="decade" value="${model.decade}"/>
-            </sub:url>
+            <c:url value="home.view" var="previousUrl">
+                <c:param name="listType" value="${model.listType}"/>
+                <c:param name="listOffset" value="${model.listOffset - model.listSize}"/>
+                <c:param name="genre" value="${model.genre}"/>
+                <c:param name="decade" value="${model.decade}"/>
+            </c:url>
+            <c:url value="home.view" var="nextUrl">
+                <c:param name="listType" value="${model.listType}"/>
+                <c:param name="listOffset" value="${model.listOffset + model.listSize}"/>
+                <c:param name="genre" value="${model.genre}"/>
+                <c:param name="decade" value="${model.decade}"/>
+            </c:url>
 
             <c:if test="${fn:length(model.albums) gt 0}">
                 <td style="padding-right:0.5em">

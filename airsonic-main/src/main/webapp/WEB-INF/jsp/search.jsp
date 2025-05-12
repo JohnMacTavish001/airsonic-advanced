@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="iso-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ taglib prefix="subsearch" uri="/WEB-INF/sub.tld" %>
 <%--@elvariable id="command" type="org.airsonic.player.command.SearchCommand"--%>
 
 <html><head>
@@ -42,11 +43,11 @@
     <table class="music indent">
         <c:forEach items="${command.artists}" var="match" varStatus="loopStatus">
 
-            <sub:url value="/main.view" var="mainUrl">
+            <subsearch:url value="/main.view" var="mainUrl">
                 <c:forEach items="${match.value}" var="mid">
-                    <sub:param name="id" value="${mid}"/>
+                    <subsearch:param name="id" value="${mid}"/>
                 </c:forEach>
-            </sub:url>
+            </subsearch:url>
 
             <tr class="artistRow" ${loopStatus.count > 5 ? "style='display:none'" : ""}>
                 <c:import url="playButtons.jsp">
@@ -70,11 +71,11 @@
     <table class="music indent">
         <c:forEach items="${command.albums}" var="match" varStatus="loopStatus">
 
-            <sub:url value="/main.view" var="mainUrl">
+            <subsearch:url value="/main.view" var="mainUrl">
                 <c:forEach items="${match.value}" var="mid">
-                    <sub:param name="id" value="${mid}"/>
+                    <subsearch:param name="id" value="${mid}"/>
                 </c:forEach>
-            </sub:url>
+            </subsearch:url>
 
             <tr class="albumRow" ${loopStatus.count > 5 ? "style='display:none'" : ""}>
                 <c:import url="playButtons.jsp">
@@ -101,9 +102,9 @@
     <table class="music indent">
         <c:forEach items="${command.songs}" var="match" varStatus="loopStatus">
 
-            <sub:url value="/main.view" var="mainUrl">
-                <sub:param name="path" value="${match.folderId}:${match.parentPath}"/>
-            </sub:url>
+            <subsearch:url value="/main.view" var="mainUrl">
+                <subsearch:param name="path" value="${match.folderId}:${match.parentPath}"/>
+            </subsearch:url>
 
             <tr class="songRow" ${loopStatus.count > 15 ? "style='display:none'" : ""}>
                 <c:import url="playButtons.jsp">
