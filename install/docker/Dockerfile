@@ -1,12 +1,12 @@
 FROM eclipse-temurin:17.0.5_8-jdk AS builder
-WORKDIR target
+WORKDIR /target
 
 COPY run.sh /usr/local/bin/run.sh
 RUN chmod +x /usr/local/bin/run.sh
 COPY entry.sh /usr/local/bin/entry.sh
 RUN chmod +x /usr/local/bin/entry.sh
 
-COPY target/dependency/airsonic-main.war airsonic.war
+COPY airsonic.war airsonic.war
 RUN jar -xf ./airsonic.war
 RUN mv WEB-INF/lib-provided lib-provided
 RUN mv WEB-INF/lib lib
@@ -49,7 +49,7 @@ COPY --from=builder target/cliquibase /app/WEB-INF/classes/liquibase
 COPY --from=builder target/script /app/script
 COPY --from=builder target/META-INF /app/META-INF
 COPY --from=builder target/WEB-INF /app/WEB-INF
-
+RUN chmod +x /usr/local/bin/run.sh /usr/local/bin/entry.sh
 EXPOSE $AIRSONIC_PORT
 
 # Default DLNA/UPnP ports

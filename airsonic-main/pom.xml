@@ -17,6 +17,7 @@
         <tomcat.server.scope>provided</tomcat.server.scope>
         <!-- For fixing import/export due to https://github.com/liquibase/liquibase/issues/1598 -->
         <liquibase.version>4.6.2</liquibase.version>
+        <war.output.directory>${project.basedir}/../install/docker</war.output.directory>
     </properties>
 
     <dependencies>
@@ -590,6 +591,13 @@
                     <compileSourceRoots>
                         <compileSourceRoot>${basedir}/src/main/webapp/WEB-INF/jsp</compileSourceRoot>
                     </compileSourceRoots>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <configuration>
+                    <outputDirectory>${war.output.directory}</outputDirectory>
                 </configuration>
             </plugin>
             <plugin>

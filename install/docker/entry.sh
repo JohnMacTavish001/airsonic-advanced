@@ -10,7 +10,7 @@ echo "Docker USER group: $ge"
 echo "Docker PGID env: $PGID"
 if [ $ue != '0' ] || [ $ge != '0' ]; then
   # specified from USER directive, run as is
-  run.sh "$@"
+  /usr/local/bin/run.sh "$@"
 else
   # No USER specified, guaranteed to be root
   gn=$(getent group $PGID | cut -d":" -f1)
@@ -28,5 +28,5 @@ else
   # add user to group
   usermod -g $gn $un
   # execute as user
-  exec gosu $un run.sh "$@"
+  exec gosu $un /usr/local/bin/run.sh "$@"
 fi
