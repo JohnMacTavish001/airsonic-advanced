@@ -15,11 +15,13 @@
    cd install/docker && docker build -t airsonic-advanced:original . 
    ```
    
-4. run the docker image
+4. run the docker image and visit http://localhost:4040/ to check the application is running.
    ```pwsh
    docker run -d --name airsonic-original  -p 4040:4040 -v .\music:/var/music -v .\airsonic:/var/airsonic  airsonic-advanced:original
    ```
-   
+   you shall see the application login page like below, and use username and pwd as both `admin` to login:
+   ![Application Login](media/application_login.png "Application Login")
+
 5. you can see the log in the [airsonic.log](/install/docker/airsonic/) file, and there should be no app log in the docker desktop's console page.
    For example, the Docker Desktop console should look something like this:
    ![Docker Desktop Console Log Example](media/docker_desktop_console_log.png "Docker Desktop Console Log")
