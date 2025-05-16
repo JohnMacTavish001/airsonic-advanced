@@ -3,9 +3,8 @@
     <!-- Include Spring Boot's default Logback configuration support -->
     <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
 
-    <!-- Include Spring Boot's standard file appender configuration -->
-    <!-- This will use properties like logging.file.name, logging.file.path, and logging.pattern.file from application.properties -->
-    <include resource="org/springframework/boot/logging/logback/file-appender.xml" />
+    <!-- Define the CONSOLE appender -->
+    <include resource="org/springframework/boot/logging/logback/console-appender.xml"/>
 
     <!-- Configure the root logger -->
     <!-- The level is sourced from 'logging.level.root' in application.properties, defaulting to WARN if not set -->
